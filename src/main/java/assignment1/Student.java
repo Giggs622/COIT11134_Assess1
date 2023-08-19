@@ -5,7 +5,26 @@
 
 package assignment1;
 
-public class Student 
+public class Student extends Member
 {
-    // Enter code here
+    // Constructor
+    public Student(int memberId, String memberName, String uniName, String memberEmail, int memberPhone, float registerFee)
+    {
+        super(memberId, memberName, uniName, memberEmail, memberPhone, registerFee);
+    }
+    
+    // Register Fee Getter for Student class
+    @Override
+    public float getRegisterFee()
+    {
+        float baseRegisterFee = super.getRegisterFee();
+        return baseRegisterFee - (baseRegisterFee * (Values.STUDENT_DISCOUNT / 100));
+    }
+
+    // toString method for Student class
+    @Override
+    public String toString()
+    {
+        return "Student{" + '}';
+    }
 }
