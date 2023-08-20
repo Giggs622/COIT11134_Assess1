@@ -7,10 +7,25 @@ package assignment1;
 
 public class Student extends Member
 {
+    // Instance variables
+    private float studentDiscount;
+    
     // Constructor
-    public Student(int memberId, String memberName, String uniName, String memberEmail, int memberPhone, float registerFee)
+    public Student(int memberId, String memberName, String uniName, String memberEmail, String memberPhone, float registerFee, float studentDiscount)
     {
         super(memberId, memberName, uniName, memberEmail, memberPhone, registerFee);
+        this.studentDiscount = studentDiscount;
+    }
+    
+    // Student discount getter and setter
+    public float getStudentDiscount()
+    {
+        return studentDiscount;
+    }
+
+    public void setStudentDiscount(float studentDiscount)
+    {
+        this.studentDiscount = studentDiscount;
     }
     
     // Register Fee Getter for Student class
@@ -18,13 +33,13 @@ public class Student extends Member
     public float getRegisterFee()
     {
         float baseRegisterFee = super.getRegisterFee();
-        return baseRegisterFee - (baseRegisterFee * (Values.STUDENT_DISCOUNT / 100));
+        return baseRegisterFee - (baseRegisterFee * (this.studentDiscount / 100));
     }
 
     // toString method for Student class
     @Override
     public String toString()
     {
-        return "Student{" + '}';
+        return String.format("%-12.12s%-20.20s%-20.20s%-20.20s%-14.14s%-14.2fNA\n", super.getMemberId(), super.getMemberName(), super.getUniName(), super.getMemberEmail(), super.getMemberPhone(), getRegisterFee());
     }
 }

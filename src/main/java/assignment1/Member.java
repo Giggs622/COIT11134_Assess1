@@ -12,11 +12,11 @@ public class Member
     private String memberName;      // Full name
     private String uniName;         // University
     private String memberEmail;     // Email
-    private int memberPhone;        // Phone Number
+    private String memberPhone;        // Phone Number
     private float registerFee;      // Registration Fee
     
     // Constructor
-    public Member(int memberId, String memberName, String uniName, String memberEmail, int memberPhone, float registerFee)
+    public Member(int memberId, String memberName, String uniName, String memberEmail, String memberPhone, float registerFee)
     {
         this.memberId = memberId;
         this.memberName = memberName;
@@ -72,12 +72,12 @@ public class Member
     }
 
     // Phone Number Getter and Setter
-    public int getMemberPhone()
+    public String getMemberPhone()
     {
         return memberPhone;
     }
 
-    public void setMemberPhone(int memberPhone)
+    public void setMemberPhone(String memberPhone)
     {
         this.memberPhone = memberPhone;
     }
@@ -97,6 +97,6 @@ public class Member
     @Override
     public String toString()
     {
-        return "Member{" + "memberId=" + memberId + ", memberName=" + memberName + ", uniName=" + uniName + ", memberEmail=" + memberEmail + ", memberPhone=" + memberPhone + ", registerFee=" + registerFee + '}';
+        return String.format("%-12.12s%-20.20s%-20.20s%-20.20s%-14.14s%-14.2fNA\n", this.memberId, this.memberName, this.uniName, this.memberEmail, this.memberPhone, this.registerFee);
     }
 }
