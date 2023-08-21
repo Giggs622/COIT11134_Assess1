@@ -34,7 +34,6 @@ public class Menu
             System.out.print("Enter choice ==> ");
             choice = inputMenuChoice.nextLine();
         }
-        System.out.println();
 
         //Parse the String to an integer
         return Integer.parseInt(choice);
@@ -74,47 +73,47 @@ public class Menu
     private void enterMemberRecord()
     {
         // Declare local variables to hold user input
-        // Member inputs
-        int memberId;
-        String memberName;
-        String uniName;
-        String memberEmail;
-        String memberPhone;
-        float registerFee;
         // Student and Speaker inputs
         float studentDiscount = 0.0F;
         String speechTopic = "";
-
-        int index;
+        // String to hold user input
         String input;
-
+        // Booleans to hold type checks
         boolean isStudent = false;
         boolean isSpeaker = false;
-
+        // Scanner to take user input
         Scanner inText = new Scanner(System.in);
+        
+        System.out.println();
 
         // Ask user for Member ID and assign to variable
-        memberId = inputInteger("Member ID");
+        int memberId = inputInteger("member ID");
         
-        //TODO - call findMemberRecord() method to check if the member ID is exist in the current list       
-        //TODO -- if the member ID is already exist, display "Member with this ID alreasy exsit"
-        //TODO -- return to the main menu
+        // Call findMemberRecord() method to check if the member ID is exist in the current list    
+        int index = findMemberRecord(memberId);
         
-        //TODO -- enter other details, full name, university, email, phone etc
+        // If the member ID is already exist, display "Member with this ID alreasy exist"
+        if (index >= 0)
+        {
+            System.out.println("\nMember with this ID already exists");
+            // Return to the main menu
+            return;
+        }
+
         // Ask user for Full Name and assign to variable
-        memberName = inputText("full name");
+        String memberName = inputText("full name");
         
         // Ask user for University and assign to variable
-        uniName = inputText("University");
+        String uniName = inputText("University");
         
         // Ask user for Email and assign to variable
-        memberEmail = inputText("email");
+        String memberEmail = inputText("email");
         
         // Ask user for Phone Number and assign to variable
-        memberPhone = inputText("phone number");
+        String memberPhone = inputText("phone number");
         
         // Ask user for Registration Fee and assign to variable
-        registerFee = inputFloat("registration fee");
+        float registerFee = inputFloat("registration fee");
         
         // Ask user for the member type
         do
@@ -159,7 +158,7 @@ public class Menu
             // Add the object to the member list
             listMember.add(student);
             // Display the member information   
-            System.out.println("Details for member entered: ");
+            System.out.println("\nDetails for member entered: ");
             displayHeading();
             System.out.println(student);
         }
@@ -170,7 +169,7 @@ public class Menu
             // Add the object to the member list
             listMember.add(speaker);
             // Display the member information   
-            System.out.println("Details for member entered: ");
+            System.out.println("\nDetails for member entered: ");
             displayHeading();
             System.out.println(speaker);
         }
@@ -181,78 +180,86 @@ public class Menu
             // Add the object to the member list
             listMember.add(member);
             // Display the member information   
-            System.out.println("Details for member entered: ");
+            System.out.println("\nDetails for member entered: ");
             displayHeading();
             System.out.println(member);
         }
     }
 
-    private void totalRegFee()
-    {
-
-        //TODO -- get size from the member list
-        //TODO -- using for loop to get each member's registration fee and sum them up
-        //TODO -- note, ArrlyList has a get(i) method to get each element in the ArrlyList
-        //TODO -- output the total registration fee   
-    }
-
-    private void viewAllMembers()
-    {
-
-        //TODO -- get size from the member list
-        //If memeber size is 0, output "No member found!"
-        //If member size is > 0
-        //using a for loop to get each element from the member list
-        //output the member details by calling its toString method.  
-    }
-
+    // Method to search for a specific member
     private void searchMember()
     {
-        Scanner inText = new Scanner(System.in);
-        String input;
-        int memberID;
-
-        do
-        {
-            System.out.printf("Pease enter a Member ID: ");
-
-            input = inText.nextLine();
-
-            if (input.equals("") || !isStringNumeric(input))
-            {
-                System.out.printf("Error - Member ID cannot be blank and must be numeric\n");
-            }
-
-        }
-        while (input.equals("") || !isStringNumeric(input));
-
-        memberID = Integer.parseInt(input);
-
+        // Ask user for member ID and assign to variable
+        int memberID = inputInteger("member ID");
+        // Check if member ID has already been stored
         int index = findMemberRecord(memberID);
-
+        // If member ID found, print member information
         if (index > -1)
         {
-            //TODO -- member found, get the related memeber by the index
-            //TODO  -- display "Member found" message
-            //TODO -- display related member information
-
+            Member m = listMember.get(index);
+            // Display "Member found" message
+            System.out.println("\nMember found");
+            // Display related member information
+            displayHeading();
+            System.out.println(m);
         }
         else
-        //TODO - display "No record found" message
+        // Display "No record found" message
         {
-            System.out.println();
+            System.out.println("\nNo record found");
         }
-
+    }
+    
+    // Method to view all of the information on members currently stored
+    private void viewAllMembers()
+    {
+        if (!listMember.isEmpty())
+        {
+            displayHeading();
+            for (Member m : listMember)
+            {
+                System.out.println(m);
+            }
+        }
+        else
+        {
+            System.out.println("\nNo member found");
+        } 
+    }
+    
+    
+    private void totalRegFee()
+    {
+        // Variable to hold total
+        float sumTotal = 0.0F;
+        
+        // Loop to get the registration fee of each member and add to total
+        for (Member m : listMember)
+        {
+            sumTotal += m.getRegisterFee();
+        }
+        
+        // Print the total registration fee
+        System.out.printf("\nThe total registration fee for all members is: $%.2f\n", sumTotal);
     }
 
     private int findMemberRecord(int memberID)
     {
-        int index = -1;
-
-        //TODO -- get the size from the member list
-        //TODO -- using for loop to get each element of the list
-        //TODO -- if the element's memberID  == memberID to be found
-        //TODO -- update the index value to the curent element's index
+        // Declare variables
+        int index = -1;                 // Store array index number if found or pass number < 0
+        int arrayCounter = 0;           // Count to which array index is found in for loop
+        
+        // Check every element in ListArray for matching member ID
+        for (Member e : listMember)
+        {
+            if (memberID == e.getMemberId())
+            {
+                index = arrayCounter;
+            }
+            arrayCounter++;
+        }
+        
+        // Return the index number
         return index;
     }
 
@@ -266,7 +273,6 @@ public class Menu
                 return false;
             }
         }
-
         return true;
     }
 
@@ -280,7 +286,6 @@ public class Menu
                 return false;
             }
         }
-
         return true;
     }
     
@@ -381,8 +386,6 @@ public class Menu
         // Print welcome message
         System.out.printf("\nWelcome to the Conference Registration System\n\n");
         
-        myApp.displayHeading();
-        
         // Call the menu method
         myApp.processOrders();
 
@@ -391,17 +394,4 @@ public class Menu
         System.out.println("Thank you for using the Conference Registration System");
         System.out.println("Program written by S0201735");
     }
-
-    // Print welcome message
-    // Display menu options
-    // Get menu selection from user
-    // Determine registration type from user and collect registration details
-    // Collect full name
-    // Collect university name
-    // Collect email
-    // Collect phone number
-    // Collect registration fee
-    // Collect speech topic
-    // String validation (No blanks
-    // Positive float validation
 }

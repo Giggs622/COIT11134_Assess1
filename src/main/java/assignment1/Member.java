@@ -97,6 +97,6 @@ public class Member
     @Override
     public String toString()
     {
-        return String.format("%-12.12s%-20.20s%-20.20s%-20.20s%-14.14s%-14.2fNA\n", this.memberId, this.memberName, this.uniName, this.memberEmail, this.memberPhone, this.registerFee);
+        return String.format("%-12.12s%-20.20s%-20.20s%-20.20s%-14.14s$%-13.2fNA", this.memberId, this.memberName, this.uniName, this.memberEmail, this.memberPhone, this.registerFee);
     }
 }

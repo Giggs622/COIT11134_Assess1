@@ -40,6 +40,6 @@ public class Student extends Member
     @Override
     public String toString()
     {
-        return String.format("%-12.12s%-20.20s%-20.20s%-20.20s%-14.14s%-14.2fNA\n", super.getMemberId(), super.getMemberName(), super.getUniName(), super.getMemberEmail(), super.getMemberPhone(), getRegisterFee());
+        return String.format("%-12.12s%-20.20s%-20.20s%-20.20s%-14.14s$%-13.2fNA", super.getMemberId(), super.getMemberName(), super.getUniName(), super.getMemberEmail(), super.getMemberPhone(), getRegisterFee());
     }
 }
