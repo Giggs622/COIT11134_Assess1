@@ -62,7 +62,7 @@ public class Menu
                     totalRegFee();
                     break;
                 default:
-                    System.out.print("ERROR choice not recognised\n\n");
+                    System.out.print("\nERROR choice not recognised\n");
             }
 
             // If error is made, get menu item selection again
@@ -139,7 +139,7 @@ public class Menu
             {
                 studentDiscount = inputFloat("student discount between 10% and 50%");
             }
-            while (studentDiscount < 10.0F || studentDiscount > 50.0F);
+            while (studentDiscount < Values.STUDENT_DISCOUNT_MIN || studentDiscount > Values.STUDENT_DISCOUNT_MAX);
         }
         
         // Check if member is a keynote speaker
@@ -223,7 +223,7 @@ public class Menu
         }
         else
         {
-            System.out.println("\nNo member found");
+            System.out.println("\nNo members found");
         } 
     }
     
@@ -296,6 +296,7 @@ public class Menu
     }
 
     // Method to ask user for numerical input and check that it is a number and isn't blank
+    // Method input is a String that is the detail to ask the user for
     private int inputInteger(String queryName)
     {
         // Declare variable to hold input
@@ -322,6 +323,7 @@ public class Menu
     }
 
     // Method to ask user for numerical input and check that it is a float and isn't blank
+    // Method input is a String that is the detail to ask the user for
     private float inputFloat(String queryName)
     {
         // Declare variable to hold input
@@ -348,6 +350,7 @@ public class Menu
     }
     
     // Method to ask user for text input and check that text isn't blank
+    // Method input is a String that is the detail to ask the user for
     private String inputText(String queryName)
     {
         // Declare variable to hold input
