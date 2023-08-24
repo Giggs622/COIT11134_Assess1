@@ -1,7 +1,8 @@
 // Programmer: Matt Jones S0201735
 // File: Menu.java
 // Date: 19 Aug 2023
-// Purpose: COIT11134 Assignment 1
+// Purpose: COIT11134 Assignment 1 Menu main class
+
 package assignment1;
 
 import java.util.Scanner;
@@ -42,6 +43,7 @@ public class Menu
     // Method to take the menu item selected and call the method related to it or print an error if choice not recognised
     private void processOrders()
     {
+        // Declare variable to hold menu choice
         int choice = getMenuItem();
 
         // While the menu item is not equal to the exit value, call the method selected
@@ -189,6 +191,8 @@ public class Menu
     // Method to search for a specific member
     private void searchMember()
     {
+        System.out.println();
+
         // Ask user for member ID and assign to variable
         int memberID = inputInteger("member ID");
         // Check if member ID has already been stored
@@ -213,6 +217,7 @@ public class Menu
     // Method to view all of the information on members currently stored
     private void viewAllMembers()
     {
+        // If list is empty display error, otherwise print out all members in the list
         if (!listMember.isEmpty())
         {
             displayHeading();
@@ -266,6 +271,7 @@ public class Menu
     // Check if a string is numeric
     private boolean isStringNumeric(String str)
     {
+        // Check that every character in the string is a number
         for (int i = 0; i < str.length(); i++)
         {
             if (!Character.isDigit(str.charAt(i)))
@@ -279,6 +285,7 @@ public class Menu
     // Check if a string is float
     private boolean isStringFloat(String str)
     {
+        // Check that every character in the string is either a number or a decimal point
         for (int i = 0; i < str.length(); i++)
         {
             if (!Character.isDigit(str.charAt(i)) && (str.charAt(i) != '.'))
@@ -292,6 +299,7 @@ public class Menu
     // Check if a member type String is valid
     private boolean isValid(String input)
     {
+        // Check that string is either an s, k or n, not case sensitive
         return input.equalsIgnoreCase("S") || input.equalsIgnoreCase("K") || input.equalsIgnoreCase("N");
     }
 
@@ -376,14 +384,16 @@ public class Menu
         return input;
     }
     
+    // Method to display the heading used when displaying member details
     private void displayHeading()
     {
         System.out.printf("\n%-12s%-20s%-20s%-20s%-14s%-14s%-20s\n", "Member ID", "Full Name", "University", "Email", "Phone Number", "Register Fee", "Speech Topic");
     }
     
+    // Main method to run the menu
     public static void main(String[] args)
     {
-        // Delcare a new object from Menu class
+        // Declare a new object from Menu class
         Menu myApp = new Menu();
 
         // Print welcome message

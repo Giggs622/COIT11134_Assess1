@@ -1,7 +1,7 @@
 // Programmer: Matt Jones S0201735
 // File: Speaker.java
 // Date: 19 Aug 2023
-// Purpose: COIT11134 Assignment 1
+// Purpose: COIT11134 Assignment 1 Speaker class that is a subclass of the Member class
 
 package assignment1;
 

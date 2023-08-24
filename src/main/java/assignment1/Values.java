@@ -1,7 +1,7 @@
 // Programmer: Matt Jones S0201735
 // File: Values.java
 // Date: 19 Aug 2023
-// Purpose: COIT11134 Assignment 1
+// Purpose: COIT11134 Assignment 1 Values class to store constants
 
 package assignment1;
 
